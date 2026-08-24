@@ -17,6 +17,17 @@ Un paquete de capacidades desplegable para entornos empresariales donde no se pu
 | Orchestrator Skill | Despliega y mantiene el conjunto completo de agentes de Office Copilot |
 | Plantilla Shared Library | Proporciona `Incoming`, `Draft`, `Test`, `Registry`, `Published/Current` y áreas de versiones inmutables |
 
+## Lógica fundamental de la arquitectura
+
+1. **Partir de las restricciones empresariales.** Muchas organizaciones disponen de Microsoft 365 Copilot, pero no permiten Skills de la comunidad, paquetes arbitrarios ni la ejecución directa de código descargado. Los puntos de extensión reales son Copilot Agents, conocimiento aprobado en SharePoint y automatización de escritorio controlada. El repositorio se diseña dentro de ese límite, sin asumir una estación de desarrollo sin restricciones.
+2. **Utilizar HTML como superficie de diseño.** Los métodos actuales de generación de presentaciones y páginas web destacan al componer diseños con HTML y CSS. Un lienzo 16:9 fijo hace predecibles las posiciones y dimensiones, de modo que la composición visual puede resolverse en HTML antes de construir PowerPoint.
+3. **Compilar un contrato, no páginas web arbitrarias.** PPT-HTML es un formato restringido con un sistema de coordenadas de 960 × 540 y un modelo JSON semántico integrado. El Compiler lee ese modelo en lugar de reconstruir todo el DOM y la cascada CSS. Así, el mapeo sigue siendo finito, comprobable y versionado.
+4. **Mantener fijo el Compiler.** El Agent produce un modelo de presentación diferente para cada solicitud, pero no reescribe el motor de conversión VBA. Un Compiler estable puede revisarse, firmarse, probarse por regresión y aprobarse una vez, mientras cambia únicamente el contenido.
+5. **Conservar la edición nativa sin inflar el número de objetos.** Cuando el PowerPoint object model lo permite, un objeto visual semántico se convierte en un solo objeto PowerPoint. Un contenedor con estilo y texto se convierte en una shape con `TextFrame2`, no en una shape de fondo más una textbox. Las tablas y los gráficos conservan datos de reconstrucción para seguir siendo objetos nativos.
+6. **Internalizar Skills externos mediante gobierno.** Los Skills externos de GitHub se tratan como material de investigación no fiable. Curator registra procedencia y licencia, extrae patrones útiles, prueba la compatibilidad, obtiene aprobación humana y publica una norma interna. Los Agents de producción solo leen `Published/Current`, por lo que los cambios externos no alteran silenciosamente la generación normal.
+7. **Separar responsabilidades.** Autoría, curación, compilación y QA tienen distintos modos de fallo y ritmos de publicación. Se asignan a Agents o capacidades independientes con entregas explícitas. El Compiler está anidado lógicamente en el flujo completo, pero se distribuye físicamente como el Skill hermano `$ppt-html-vba-compiler`, lo que permite detectarlo e invocarlo por separado.
+8. **Exigir evidencia en lugar de afirmaciones optimistas.** Se rechazan versiones mayores del Schema y tipos desconocidos. La fidelidad visual requiere comparar renderizados; la edición nativa requiere un inventario de objetos o inspección directa; la compilación de escritorio requiere archivos de salida y un compile report. El modelo de lenguaje no debe afirmar que ejecutó VBA cuando solo preparó las entradas.
+
 ## Inicio rápido con Office Copilot
 
 1. Copie `shared-library-template/PPT-Skill-Library` en una biblioteca de documentos de SharePoint aprobada.
