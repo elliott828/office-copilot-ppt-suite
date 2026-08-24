@@ -1,0 +1,5 @@
+interface:
+  display_name: "PPT-HTML VBA Compiler"
+  short_description: "Compile PPT-HTML into editable PowerPoint objects"
+  brand_color: "#C75B39"
+  default_prompt: "Use $ppt-html-vba-compiler to validate and compile this PPT-HTML package into an editable PowerPoint deck."

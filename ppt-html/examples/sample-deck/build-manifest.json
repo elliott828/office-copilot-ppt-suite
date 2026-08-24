@@ -1,0 +1,15 @@
+{
+  "packageVersion": "0.1.0",
+  "internalStandardVersion": "0.1.0",
+  "pptHtmlSchemaVersion": "1.0.0",
+  "minimumCompilerVersion": "0.1.0",
+  "deckFile": "deck.html",
+  "slideCount": 1,
+  "objectCount": 2,
+  "fonts": [{"requested": "Aptos", "fallback": "Arial"}],
+  "assets": [],
+  "fallbacks": [],
+  "assumptions": ["Sample values are synthetic and are not business facts."],
+  "warnings": [],
+  "sources": [{"id": "src-sample", "type": "synthetic", "name": "Repository example"}]
+}

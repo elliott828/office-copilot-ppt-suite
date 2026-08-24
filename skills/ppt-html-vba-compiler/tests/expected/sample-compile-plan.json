@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "standardVersion": "0.1.0",
+  "minimumCompilerVersion": "0.1.0",
+  "sourceHtml": "sample-deck.html",
+  "sourceSha256": "09f5d7423c9e00a76f464e7e2f4ada233f567e4785a15ac77ee18edb4c2355ea",
+  "slideSize": {
+    "width": 960,
+    "height": 540
+  },
+  "slideCount": 1,
+  "objectCount": 2,
+  "slides": [
+    {
+      "id": "sample-slide",
+      "objects": [
+        {
+          "id": "title",
+          "type": "text",
+          "bounds": {
+            "x": 56,
+            "y": 44,
+            "w": 848,
+            "h": 44
+          },
+          "z": 1,
+          "fidelity": "exact-native",
+          "nativeFactory": "Shapes.AddTextbox"
+        },
+        {
+          "id": "kpi-card",
+          "type": "shape",
+          "bounds": {
+            "x": 56,
+            "y": 132,
+            "w": 310,
+            "h": 144
+          },
+          "z": 2,
+          "fidelity": "exact-native",
+          "nativeFactory": "Shapes.AddShape",
+          "containedText": true,
+          "powerPointObjectCount": 1
+        }
+      ]
+    }
+  ]
+}

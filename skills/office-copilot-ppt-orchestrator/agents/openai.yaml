@@ -1,0 +1,5 @@
+interface:
+  display_name: "Office Copilot PPT Orchestrator"
+  short_description: "Governed PPT-HTML authoring and PowerPoint QA"
+  brand_color: "#173F5F"
+  default_prompt: "Use $office-copilot-ppt-orchestrator to prepare or review an Office Copilot PPT agent package."

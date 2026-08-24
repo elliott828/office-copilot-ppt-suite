@@ -1,0 +1,18 @@
+{
+  "packageVersion": "0.1.0",
+  "status": "approved",
+  "publishedAt": "2026-08-24T00:00:00+09:00",
+  "approvedBy": "Template publisher",
+  "snapshot": "Immutable bootstrap release snapshot",
+  "internalDesignStandardVersion": "0.1.0",
+  "pptHtmlSchemaVersion": "1.0.0",
+  "minimumCompilerVersion": "0.1.0",
+  "qaRubricVersion": "1.0.0",
+  "files": [
+    "design-standard.md",
+    "ppt-html-schema.json",
+    "object-mapping.json",
+    "qa-rubric.md",
+    "compatibility-matrix.csv"
+  ]
+}

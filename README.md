@@ -1,0 +1,86 @@
+# Office Copilot PPT Agent Suite
+
+[English](README.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [Français](README.fr.md) | [Español](README.es.md)
+
+A deployable capability pack for producing editable, native-object PowerPoint presentations in restricted Microsoft 365 Copilot environments.
+
+> This repository is not a natively installable Microsoft 365 Copilot Skill. It delivers reusable capabilities through Copilot agents, governed SharePoint knowledge, a constrained PPT-HTML format, and a fixed VBA compiler. Platforms that support `SKILL.md` can install the two Skills under `skills/`.
+
+## What is included
+
+| Component | Purpose |
+|---|---|
+| PPT Authoring Agent | Converts chat and Word, PowerPoint, Excel, PDF, text, HTML, Markdown, and image context into 16:9 PPT-HTML |
+| PPT Skill Curator | Reviews upstream presentation skills and publishes approved internal standards through a controlled release process |
+| PPT QA Agent | Audits schema, native-object editability, geometry, visual fidelity, content integrity, and accessibility |
+| PPT-HTML VBA Compiler Skill | Validates PPT-HTML and compiles the embedded model into native PowerPoint objects through a fixed VBA engine |
+| Orchestrator Skill | Deploys and maintains the complete Office Copilot agent suite |
+| Shared library template | Provides `Incoming`, `Draft`, `Test`, `Registry`, `Published/Current`, and immutable release areas |
+
+## Office Copilot quick start
+
+1. Copy `shared-library-template/PPT-Skill-Library` into an approved SharePoint document library.
+2. Replace `{{SHARED_LIBRARY_ROOT_URL}}` with the SharePoint URL ending in `PPT-Skill-Library`.
+3. Open Microsoft 365 Copilot Agent Builder and paste each file in `office-copilot/*-agent-generator.txt`.
+4. Add the knowledge folders listed in each generator prompt.
+5. Build a trusted `.pptm` or `.ppam` compiler host from `skills/ppt-html-vba-compiler/vba/`.
+6. Test privately before sharing the agents.
+
+Detailed instructions are available in [the Office Copilot setup guide](office-copilot/README.md).
+
+## Install the Skills
+
+Copy either or both directories into the Skills directory of a platform that supports `SKILL.md`:
+
+```text
+skills/office-copilot-ppt-orchestrator
+skills/ppt-html-vba-compiler
+```
+
+They can be invoked independently:
+
+```text
+Use $office-copilot-ppt-orchestrator to configure this tenant's PPT agent suite.
+Use $ppt-html-vba-compiler to validate and compile deck.html.
+```
+
+The compiler Skill is logically part of the suite but physically independent so skill discovery works reliably.
+
+## Repository map
+
+```text
+office-copilot/           Copy/paste Agent Builder prompts and instructions
+shared-library-template/  SharePoint knowledge and release template
+ppt-html/                 Schema, mapping contract, and examples
+skills/                   Two independently installable Skills
+docs/                     Architecture and governance documentation
+tools/                    Configuration and repository validation tools
+```
+
+## Current status
+
+This repository is an early implementation. The PPT-HTML schema, deterministic validator, object plan, VBA source, agent prompts, governance workflow, QA contract, tests, and sample deck are included. Desktop compilation still requires an organization-approved macro host and Microsoft PowerPoint for Windows. Complex browser effects must use declared native, SVG, raster, or unsupported fallbacks.
+
+Run validation before publishing a release:
+
+```powershell
+python tools/validate_repository.py
+python -m unittest discover -s skills/ppt-html-vba-compiler/tests -v
+```
+
+## Security and governance
+
+Production agents read only `Published/Current`. GitHub content and files under `Incoming`, `Draft`, `Test`, or historical releases are not production instructions. Upstream updates require provenance, license review, compatibility tests, human approval, an immutable release snapshot, and a rollback plan.
+
+Macros should run only from trusted or signed hosts under organizational policy. The compiler rejects unknown schema major versions and unknown object types instead of guessing.
+
+## Documentation
+
+- [Office Copilot setup](office-copilot/README.md)
+- [Architecture and governance](docs/architecture.md)
+- [Skills usage](skills/README.md)
+- [PPT-HTML example](ppt-html/examples/sample-deck/deck.html)
+
+## License
+
+Project-authored content is provided under the MIT License. Vendored VBA dependencies retain their own MIT notices under `skills/ppt-html-vba-compiler/vba/vendor/`.

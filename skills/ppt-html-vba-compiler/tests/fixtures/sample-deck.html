@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="ppt-html-schema" content="1.0.0">
+  <meta name="ppt-standard-version" content="0.1.0">
+  <meta name="ppt-min-compiler" content="0.1.0">
+  <title>PPT-HTML sample</title>
+  <style>
+    html, body { margin: 0; background: #d9e2ec; font-family: Aptos, Arial, sans-serif; }
+    .ppt-slide { position: relative; width: 960px; height: 540px; overflow: hidden; background: #f7f9fc; }
+    [data-ppt-id="title"] { position: absolute; left: 56px; top: 44px; width: 848px; height: 44px; color: #102a43; font-size: 30px; font-weight: 700; }
+    [data-ppt-id="kpi-card"] { position: absolute; left: 56px; top: 132px; width: 310px; height: 144px; box-sizing: border-box; border-radius: 18px; background: #173f5f; color: #ffffff; padding: 24px; font-size: 26px; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <section class="ppt-slide" data-slide-id="sample-slide">
+    <div data-ppt-id="title" data-ppt-type="text">Quarterly Revenue</div>
+    <div data-ppt-id="kpi-card" data-ppt-type="shape">Revenue: $4.2M</div>
+  </section>
+  <script id="ppt-model" type="application/json">
+  {
+    "schemaVersion": "1.0.0",
+    "standardVersion": "0.1.0",
+    "minimumCompilerVersion": "0.1.0",
+    "slideSize": {"width": 960, "height": 540},
+    "slides": [{
+      "id": "sample-slide",
+      "title": "Quarterly Revenue",
+      "background": {"kind": "solid", "color": "#F7F9FC"},
+      "objects": [
+        {
+          "id": "title",
+          "type": "text",
+          "bounds": {"x": 56, "y": 44, "w": 848, "h": 44},
+          "z": 1,
+          "fidelity": "exact-native",
+          "text": "Quarterly Revenue",
+          "textStyle": {"font": {"family": "Aptos", "fallback": "Arial", "size": 30, "color": "#102A43", "bold": true}, "align": "left", "verticalAlign": "middle", "wrap": false, "autoSize": "none"},
+          "sourceIds": ["src-sample"]
+        },
+        {
+          "id": "kpi-card",
+          "type": "shape",
+          "shapeType": "roundRect",
+          "bounds": {"x": 56, "y": 132, "w": 310, "h": 144},
+          "z": 2,
+          "fidelity": "exact-native",
+          "fill": {"kind": "solid", "color": "#173F5F"},
+          "line": {"visible": false},
+          "text": "Revenue: $4.2M",
+          "textStyle": {"font": {"family": "Aptos", "fallback": "Arial", "size": 26, "color": "#FFFFFF", "bold": true}, "align": "left", "verticalAlign": "middle", "marginLeft": 24, "marginRight": 24, "marginTop": 24, "marginBottom": 24, "wrap": true, "autoSize": "none"},
+          "sourceIds": ["src-sample"]
+        }
+      ]
+    }]
+  }
+  </script>
+</body>
+</html>

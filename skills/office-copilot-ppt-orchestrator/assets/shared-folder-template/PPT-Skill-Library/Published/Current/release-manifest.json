@@ -1,0 +1,46 @@
+{
+  "packageVersion": "0.1.0",
+  "status": "approved",
+  "publishedAt": "2026-08-24T00:00:00+09:00",
+  "approvedBy": "Template publisher",
+  "internalDesignStandardVersion": "0.1.0",
+  "pptHtmlSchemaVersion": "1.0.0",
+  "compiler": {
+    "minimumVersion": "0.1.0",
+    "testedVersions": ["0.1.0"],
+    "runtime": "Microsoft PowerPoint for Windows desktop with approved VBA policy"
+  },
+  "agents": {
+    "pptAuthoringInstructions": "0.1.0",
+    "skillCuratorInstructions": "0.1.0",
+    "pptQaInstructions": "0.1.0"
+  },
+  "qaRubricVersion": "1.0.0",
+  "files": [
+    "design-standard.md",
+    "ppt-html-schema.json",
+    "object-mapping.json",
+    "qa-rubric.md",
+    "compatibility-matrix.csv"
+  ],
+  "supportedObjectTypes": [
+    "shape",
+    "text",
+    "image",
+    "line",
+    "connector",
+    "table",
+    "chart",
+    "group",
+    "svg"
+  ],
+  "fallbacks": [
+    "native-approximation",
+    "grouped-native",
+    "svg-fallback",
+    "raster-fallback",
+    "unsupported"
+  ],
+  "upstreamSources": [],
+  "notes": "Bootstrap internal standard. Add upstream-derived practices only through the Curator approval workflow."
+}

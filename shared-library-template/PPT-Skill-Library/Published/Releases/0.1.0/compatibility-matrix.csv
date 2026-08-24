@@ -1,0 +1,7 @@
+artifact,version,compatible_with,status,notes
+internal-design-standard,0.1.0,ppt-html-schema 1.x,approved,Bootstrap design rules
+ppt-html-schema,1.0.0,vba-compiler >=0.1.0 <1.0.0,approved,Break on unknown major schema
+vba-compiler,0.1.0,ppt-html-schema 1.0.0,external-prerequisite,Deploy separately in trusted desktop PowerPoint
+ppt-authoring-agent,0.1.0,internal-design-standard 0.1.0,approved,Reads Published Current only
+skill-curator-agent,0.1.0,governance workflow 1.0.0,approved,Requires human approval before publish
+ppt-qa-agent,0.1.0,qa-rubric 1.0.0,approved,Reports evidence coverage explicitly

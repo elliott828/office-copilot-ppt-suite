@@ -1,0 +1,61 @@
+{
+  "mappingVersion": "1.0.0",
+  "schemaMajor": 1,
+  "unknownTypePolicy": "reject",
+  "objects": {
+    "shape": {
+      "create": "Shapes.AddShape",
+      "nativeClass": "PowerPoint.Shape",
+      "containedTextTarget": "TextFrame2.TextRange",
+      "separateContainedTextBox": false
+    },
+    "text": {
+      "create": "Shapes.AddTextbox",
+      "nativeClass": "PowerPoint.Shape",
+      "textTarget": "TextFrame2.TextRange"
+    },
+    "image": {
+      "create": "Shapes.AddPicture",
+      "nativeClass": "PowerPoint.Shape",
+      "cropTarget": "PictureFormat"
+    },
+    "line": {
+      "create": "Shapes.AddLine",
+      "nativeClass": "PowerPoint.Shape",
+      "styleTarget": "LineFormat"
+    },
+    "connector": {
+      "create": "Shapes.AddConnector",
+      "nativeClass": "PowerPoint.Shape",
+      "styleTarget": "LineFormat"
+    },
+    "table": {
+      "create": "Shapes.AddTable",
+      "nativeClass": "PowerPoint.Table",
+      "structuredDataRequired": true
+    },
+    "chart": {
+      "create": "Shapes.AddChart2",
+      "nativeClass": "PowerPoint.Chart",
+      "dataTarget": "Chart.ChartData.Workbook",
+      "structuredDataRequired": true,
+      "rasterWhenStructuredDataExists": false
+    },
+    "group": {
+      "create": "ShapeRange.Group",
+      "nativeClass": "PowerPoint.GroupShapes",
+      "wholeSlideDefault": false
+    },
+    "svg": {
+      "create": "Shapes.AddPicture",
+      "nativeClass": "PowerPoint.Shape",
+      "editability": "vector-picture"
+    }
+  },
+  "metadata": {
+    "objectId": "Shape.Tags[ppt-html-id]",
+    "objectType": "Shape.Tags[ppt-html-type]",
+    "schemaVersion": "Shape.Tags[ppt-html-schema]",
+    "sourceIds": "Shape.AlternativeText or compiler metadata report"
+  }
+}

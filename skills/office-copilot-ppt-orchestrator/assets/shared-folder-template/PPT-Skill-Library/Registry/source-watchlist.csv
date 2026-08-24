@@ -1,0 +1,2 @@
+source_id,enabled,repository_url,tracked_ref,tracked_paths,last_reviewed_version,last_reviewed_hash,check_frequency,license,status,owner
+example-upstream,false,https://github.com/example/example,main,SKILL.md,,,monthly,unknown,template-row,PPT standards owner

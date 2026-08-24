@@ -1,0 +1,4 @@
+test_id,area,input_fixture,expected_invariant,severity,status,last_run,notes
+BOOT-001,shape-complexity,sample-card,A filled card with contained text maps to one Shape with TextFrame2,HIGH,not-run,,Bootstrap regression case
+BOOT-002,chart-editability,sample-native-chart,Structured chart data maps to a native Chart object,HIGH,not-run,,Bootstrap regression case
+BOOT-003,version-compatibility,incompatible-major-schema,Compiler rejects an unknown major schema,BLOCKER,not-run,,Bootstrap failure case

@@ -1,0 +1,4 @@
+artifact,current_version,status,published_at,approved_by,compatibility,release_path
+internal-design-standard,0.1.0,approved,2026-08-24,Template publisher,ppt-html-schema 1.x,Published/Releases/0.1.0
+ppt-html-schema,1.0.0,approved,2026-08-24,Template publisher,vba-compiler >=0.1.0 <1.0.0,Published/Releases/0.1.0
+qa-rubric,1.0.0,approved,2026-08-24,Template publisher,ppt-html-schema 1.x,Published/Releases/0.1.0
