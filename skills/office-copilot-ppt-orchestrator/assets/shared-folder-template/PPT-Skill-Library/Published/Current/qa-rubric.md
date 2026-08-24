@@ -1,4 +1,4 @@
-# PPT QA rubric 1.0.0
+# PPT QA rubric 1.1.0
 
 ## Mandatory gates
 
@@ -12,6 +12,9 @@
 | Mapping | Object types are supported and declared | BLOCKER |
 | Shape complexity | Shape-contained text remains one Shape | MEDIUM |
 | Chart editability | Structured chart remains native | HIGH |
+| Style selection | Pack/version and rationale are recorded and compatible with the content and Brand Overlay | MEDIUM |
+| Style adherence | Layout, tokens, fidelity tier, and prohibited treatments follow the selected pack | MEDIUM |
+| Chart semantics | Chart family, baseline, units, missing values, labels, and encodings answer the stated question without distortion | HIGH |
 | Table editability | Structured table remains native or has approved fallback | HIGH |
 | Assets | Assets resolve with permitted provenance | HIGH |
 | Fallback disclosure | Every approximation/fallback is declared | MEDIUM |

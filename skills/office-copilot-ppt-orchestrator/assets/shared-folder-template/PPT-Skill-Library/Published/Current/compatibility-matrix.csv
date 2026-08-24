@@ -1,7 +1,9 @@
 artifact,version,compatible_with,status,notes
-internal-design-standard,0.1.0,ppt-html-schema 1.x,approved,Bootstrap design rules
+internal-design-standard,0.2.0,ppt-html-schema 1.x,approved,Adds governed style selection and chart semantics without changing schema
+style-catalog,1.0.0,internal-design-standard 0.2.0,approved,Eight initial 960x540 Style Packs
+chart-design-standard,1.0.0,ppt-html-schema 1.0.0,approved,Native chart data and visual treatment rules
 ppt-html-schema,1.0.0,vba-compiler >=0.1.0 <1.0.0,approved,Break on unknown major schema
 vba-compiler,0.1.0,ppt-html-schema 1.0.0,external-prerequisite,Deploy separately in trusted desktop PowerPoint
-ppt-authoring-agent,0.1.0,internal-design-standard 0.1.0,approved,Reads Published Current only
-skill-curator-agent,0.1.0,governance workflow 1.0.0,approved,Requires human approval before publish
-ppt-qa-agent,0.1.0,qa-rubric 1.0.0,approved,Reports evidence coverage explicitly
+ppt-authoring-agent,0.2.0,internal-design-standard 0.2.0 + style-catalog 1.0.0,approved,Matches context before authoring and records selection
+skill-curator-agent,0.2.0,governance workflow 1.0.0,approved,Versions and tests Style Packs and HTML references
+ppt-qa-agent,0.2.0,qa-rubric 1.1.0,approved,Audits style adherence and chart semantics

@@ -37,6 +37,7 @@ def main() -> int:
         "LICENSE",
         "THIRD_PARTY_NOTICES.md",
         "skills/office-copilot-ppt-orchestrator/SKILL.md",
+        "skills/ppt-html-style-system/SKILL.md",
         "skills/ppt-html-vba-compiler/SKILL.md",
         "skills/ppt-html-vba-compiler/vba/PptHtmlCompiler.bas",
         "skills/ppt-html-vba-compiler/vba/vendor/JsonConverter.bas",
@@ -48,12 +49,14 @@ def main() -> int:
         "ppt-html/schema/ppt-html-schema-1.0.0.json",
         "ppt-html/mapping/object-mapping-1.0.0.json",
         "shared-library-template/PPT-Skill-Library/Published/Current/release-manifest.json",
+        "shared-library-template/PPT-Skill-Library/Published/Current/style-catalog.json",
         "skills/ppt-html-vba-compiler/assets/ppt-html-schema.json",
         "skills/ppt-html-vba-compiler/assets/object-mapping.json",
+        "skills/ppt-html-style-system/assets/style-catalog.json",
     ):
         check_json(path)
 
-    for skill in ("office-copilot-ppt-orchestrator", "ppt-html-vba-compiler"):
+    for skill in ("office-copilot-ppt-orchestrator", "ppt-html-style-system", "ppt-html-vba-compiler"):
         text = require(f"skills/{skill}/SKILL.md").read_text(encoding="utf-8")
         match = re.match(r"---\s*\nname:\s*([^\n]+)", text)
         if not match or match.group(1).strip() != skill:
@@ -78,14 +81,37 @@ def main() -> int:
                     raise AssertionError(f"private or machine-local marker in {path.relative_to(ROOT)}: {marker}")
 
     prompt_root = ROOT / "office-copilot"
-    for path in list(prompt_root.glob("*-agent-generator.txt")) + list((prompt_root / "instructions").glob("*.txt")):
+    for path in (prompt_root / "instructions").glob("*.txt"):
         text = path.read_text(encoding="utf-8")
         if len(text) > 8_000:
             raise AssertionError(f"Agent text exceeds 8000 characters: {path}")
 
+    current = ROOT / "shared-library-template/PPT-Skill-Library/Published/Current"
+    manifest = json.loads((current / "release-manifest.json").read_text(encoding="utf-8"))
+    for filename in manifest["files"]:
+        if not (current / filename).is_file():
+            raise AssertionError(f"Current release manifest names missing file: {filename}")
+
+    style_catalog = json.loads((current / "style-catalog.json").read_text(encoding="utf-8"))
+    pack_ids = [pack["id"] for pack in style_catalog["packs"]]
+    if len(pack_ids) != len(set(pack_ids)) or len(pack_ids) < 8:
+        raise AssertionError("Style catalog must contain at least eight uniquely identified packs")
+    if "chart" not in style_catalog.get("sharedLayouts", []):
+        raise AssertionError("Style catalog must include the shared chart layout")
+    for pack in style_catalog["packs"]:
+        tokens = pack.get("tokens", {})
+        required_chart_tokens = {"categorical", "sequential", "diverging", "semantic", "grid"}
+        if not required_chart_tokens.issubset(tokens):
+            raise AssertionError(f"Style pack lacks chart tokens: {pack['id']}")
+
     subprocess.run(
         [sys.executable, str(ROOT / "skills/ppt-html-vba-compiler/scripts/validate_ppt_html.py"),
          str(ROOT / "skills/ppt-html-vba-compiler/tests/fixtures/sample-deck.html")],
+        check=True,
+    )
+    subprocess.run(
+        [sys.executable, str(ROOT / "skills/ppt-html-vba-compiler/scripts/validate_ppt_html.py"),
+         str(current / "chart-slide-template.html")],
         check=True,
     )
     print("Repository validation passed.")

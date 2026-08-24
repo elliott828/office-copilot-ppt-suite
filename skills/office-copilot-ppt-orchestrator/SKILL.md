@@ -10,7 +10,10 @@ Create or maintain a three-role presentation system while keeping deterministic 
 - PPT Authoring Agent: understands source material and emits `PPT-HTML` plus a build manifest.
 - Skill Curator Agent: reviews upstream presentation skills and publishes approved internal standards.
 - PPT QA Agent: checks HTML, compiler output, native-object structure, and rendered fidelity.
+- Style System: matches user context to a governed 16:9 Style Pack, layout archetype, and native chart treatment.
 - VBA compiler: a separately versioned deterministic component; agents may prepare inputs and inspect outputs but must not pretend they executed desktop VBA.
+
+Treat `$ppt-html-style-system` as a nested authoring capability at the workflow level. Invoke it before slide construction when the runtime exposes that Skill. In Microsoft 365 Copilot, use the equivalent approved files in `Published/Current`; do not require the user to install a Skill.
 
 Treat `$ppt-html-vba-compiler` as a nested capability at the workflow level. Invoke it when the runtime exposes that Skill. If it is unavailable, produce the validated PPT-HTML handoff package and give the operator the fixed compiler command; do not synthesize new conversion code per deck.
 
@@ -26,6 +29,7 @@ The authoring agent reads the internal standard produced by the curator; it does
 - For the shared-folder lifecycle and releases, read [references/governance.md](references/governance.md).
 - For periodic upstream checks, read [references/scheduled-update-flow.md](references/scheduled-update-flow.md).
 - For authoring or modifying PPT-HTML, read [references/ppt-html-contract.md](references/ppt-html-contract.md) and [references/object-mapping.md](references/object-mapping.md).
+- For style matching, 16:9 templates, or chart treatment, invoke `$ppt-html-style-system` or read the approved Style Pack files in `Published/Current`.
 - For evaluating HTML or PowerPoint output, read [references/qa-contract.md](references/qa-contract.md).
 
 Use the copy/paste prompts under `office-copilot/` to create the three agents. Replace `{{SHARED_LIBRARY_ROOT_URL}}` before deployment or run `scripts/configure_package.py` to make a configured copy.

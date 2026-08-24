@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:office-copilot-ppt-suite:ppt-html:1.0.0",
+  "title": "PPT-HTML embedded model",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "standardVersion", "minimumCompilerVersion", "slideSize", "slides"],
+  "properties": {
+    "schemaVersion": {"const": "1.0.0"},
+    "standardVersion": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "minimumCompilerVersion": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "slideSize": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height"],
+      "properties": {
+        "width": {"const": 960},
+        "height": {"const": 540}
+      }
+    },
+    "slides": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/slide"}
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,79}$"},
+    "color": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+    "number": {"type": "number"},
+    "bounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "w", "h"],
+      "properties": {
+        "x": {"$ref": "#/$defs/number"},
+        "y": {"$ref": "#/$defs/number"},
+        "w": {"type": "number", "exclusiveMinimum": 0},
+        "h": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "font": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["family", "size", "color"],
+      "properties": {
+        "family": {"type": "string", "minLength": 1},
+        "fallback": {"type": "string"},
+        "size": {"type": "number", "exclusiveMinimum": 0},
+        "color": {"$ref": "#/$defs/color"},
+        "bold": {"type": "boolean"},
+        "italic": {"type": "boolean"},
+        "underline": {"type": "boolean"},
+        "tracking": {"type": "number"}
+      }
+    },
+    "textStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["font"],
+      "properties": {
+        "font": {"$ref": "#/$defs/font"},
+        "align": {"enum": ["left", "center", "right", "justify"]},
+        "verticalAlign": {"enum": ["top", "middle", "bottom"]},
+        "marginLeft": {"type": "number", "minimum": 0},
+        "marginRight": {"type": "number", "minimum": 0},
+        "marginTop": {"type": "number", "minimum": 0},
+        "marginBottom": {"type": "number", "minimum": 0},
+        "lineSpacing": {"type": "number", "exclusiveMinimum": 0},
+        "wrap": {"type": "boolean"},
+        "autoSize": {"enum": ["none", "fit-shape-to-text", "shrink-text-on-overflow"]}
+      }
+    },
+    "fill": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["kind"],
+      "properties": {
+        "kind": {"enum": ["none", "solid", "linear-gradient", "radial-gradient", "pattern", "picture"]},
+        "color": {"$ref": "#/$defs/color"},
+        "transparency": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "lineStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "visible": {"type": "boolean"},
+        "color": {"$ref": "#/$defs/color"},
+        "width": {"type": "number", "minimum": 0},
+        "dash": {"enum": ["solid", "dash", "dot", "dash-dot", "long-dash"]},
+        "transparency": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "fallback": {
+      "enum": ["exact-native", "native-approximation", "grouped-native", "svg-fallback", "raster-fallback", "unsupported"]
+    },
+    "baseObject": {
+      "type": "object",
+      "required": ["id", "type", "bounds", "z", "fidelity"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "type": {"enum": ["shape", "text", "image", "line", "connector", "table", "chart", "group", "svg"]},
+        "bounds": {"$ref": "#/$defs/bounds"},
+        "z": {"type": "integer", "minimum": 0},
+        "rotation": {"type": "number"},
+        "fidelity": {"$ref": "#/$defs/fallback"},
+        "fallbackReason": {"type": "string"},
+        "altText": {"type": "string"},
+        "sourceIds": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "object": {
+      "allOf": [
+        {"$ref": "#/$defs/baseObject"},
+        {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "shapeType": {"type": "string"},
+            "text": {"type": "string"},
+            "textStyle": {"$ref": "#/$defs/textStyle"},
+            "fill": {"$ref": "#/$defs/fill"},
+            "line": {"$ref": "#/$defs/lineStyle"},
+            "asset": {"type": "string"},
+            "crop": {"type": "object"},
+            "chart": {"type": "object"},
+            "table": {"type": "object"},
+            "children": {"type": "array", "items": {"$ref": "#/$defs/id"}, "uniqueItems": true}
+          }
+        }
+      ]
+    },
+    "slide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "objects"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "title": {"type": "string"},
+        "background": {"$ref": "#/$defs/fill"},
+        "objects": {"type": "array", "items": {"$ref": "#/$defs/object"}}
+      }
+    }
+  }
+}

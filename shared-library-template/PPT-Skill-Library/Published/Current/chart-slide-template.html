@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="ppt-html-schema" content="1.0.0">
+  <meta name="ppt-standard-version" content="0.2.0">
+  <meta name="ppt-min-compiler" content="0.1.0">
+  <meta name="ppt-style-pack" content="data-editorial@1.0.0">
+  <title>Native chart slide template</title>
+  <style>
+    html, body { margin: 0; background: #d8d2c7; font-family: Aptos, Arial, sans-serif; }
+    .ppt-slide { position: relative; width: 960px; height: 540px; overflow: hidden; background: #f7f1e5; color: #191714; }
+    [data-ppt-id="title"] { position: absolute; left: 52px; top: 38px; width: 856px; height: 46px; font-size: 28px; font-weight: 700; line-height: 1.15; }
+    [data-ppt-id="subtitle"] { position: absolute; left: 52px; top: 90px; width: 856px; height: 28px; color: #746f66; font-size: 14px; }
+    [data-ppt-id="revenue-chart"] { position: absolute; left: 52px; top: 142px; width: 630px; height: 320px; box-sizing: border-box; border-left: 1px solid #9f978b; border-bottom: 1px solid #9f978b; }
+    .preview-bar { position: absolute; bottom: 0; width: 84px; background: #1e6a78; }
+    .preview-bar.emphasis { background: #d24a2f; }
+    .preview-label { position: absolute; bottom: -26px; width: 84px; text-align: center; color: #746f66; font-size: 12px; }
+    [data-ppt-id="insight"] { position: absolute; left: 720px; top: 170px; width: 188px; height: 126px; box-sizing: border-box; padding: 18px; background: #fffdf8; border: 1px solid #d9d0c1; color: #191714; font-size: 17px; font-weight: 700; line-height: 1.35; }
+    [data-ppt-id="source-note"] { position: absolute; left: 52px; top: 498px; width: 856px; height: 18px; color: #746f66; font-size: 10px; }
+  </style>
+</head>
+<body>
+  <section class="ppt-slide" data-slide-id="chart-template">
+    <div data-ppt-id="title" data-ppt-type="text">Revenue growth accelerated in the second half</div>
+    <div data-ppt-id="subtitle" data-ppt-type="text">Quarterly revenue, USD millions</div>
+    <div data-ppt-id="revenue-chart" data-ppt-type="chart" role="img" aria-label="Quarterly revenue increased from 12 to 24 million dollars, with the largest increase in Q4.">
+      <div class="preview-bar" style="left:48px;height:120px;"></div><div class="preview-label" style="left:48px;">Q1</div>
+      <div class="preview-bar" style="left:174px;height:150px;"></div><div class="preview-label" style="left:174px;">Q2</div>
+      <div class="preview-bar" style="left:300px;height:190px;"></div><div class="preview-label" style="left:300px;">Q3</div>
+      <div class="preview-bar emphasis" style="left:426px;height:240px;"></div><div class="preview-label" style="left:426px;">Q4</div>
+    </div>
+    <div data-ppt-id="insight" data-ppt-type="shape">Q4 contributed 36% of full-year revenue.</div>
+    <div data-ppt-id="source-note" data-ppt-type="text">Source: approved financial dataset; values shown here are illustrative.</div>
+  </section>
+  <script id="ppt-model" type="application/json">
+  {
+    "schemaVersion": "1.0.0",
+    "standardVersion": "0.2.0",
+    "minimumCompilerVersion": "0.1.0",
+    "slideSize": {"width": 960, "height": 540},
+    "slides": [{
+      "id": "chart-template",
+      "title": "Revenue growth accelerated in the second half",
+      "background": {"kind": "solid", "color": "#F7F1E5"},
+      "objects": [
+        {
+          "id": "title", "type": "text", "bounds": {"x": 52, "y": 38, "w": 856, "h": 46}, "z": 1, "fidelity": "exact-native",
+          "text": "Revenue growth accelerated in the second half",
+          "textStyle": {"font": {"family": "Aptos", "fallback": "Arial", "size": 28, "color": "#191714", "bold": true}, "align": "left", "verticalAlign": "middle", "wrap": true, "autoSize": "none"},
+          "sourceIds": ["src-finance"]
+        },
+        {
+          "id": "subtitle", "type": "text", "bounds": {"x": 52, "y": 90, "w": 856, "h": 28}, "z": 2, "fidelity": "exact-native",
+          "text": "Quarterly revenue, USD millions",
+          "textStyle": {"font": {"family": "Aptos", "fallback": "Arial", "size": 14, "color": "#746F66"}, "align": "left", "verticalAlign": "middle", "wrap": false, "autoSize": "none"},
+          "sourceIds": ["src-finance"]
+        },
+        {
+          "id": "revenue-chart", "type": "chart", "bounds": {"x": 52, "y": 142, "w": 630, "h": 320}, "z": 3, "fidelity": "exact-native",
+          "altText": "Quarterly revenue increased from 12 to 24 million dollars, with the largest increase in Q4.",
+          "chart": {
+            "chartType": "columnClustered",
+            "categories": ["Q1", "Q2", "Q3", "Q4"],
+            "series": [{"name": "Revenue", "values": [12, 15, 19, 24], "numberFormat": "$0.0M"}],
+            "valueAxis": {"minimum": 0, "maximum": 28, "majorUnit": 7, "numberFormat": "$0M", "title": "USD millions"},
+            "categoryAxis": {"title": "Quarter"},
+            "legend": {"visible": false},
+            "dataLabels": {"visible": true, "position": "outsideEnd", "numberFormat": "$0M"},
+            "colors": ["#1E6A78"],
+            "pointOverrides": [{"series": 0, "point": 3, "color": "#D24A2F"}],
+            "plotArea": {"fill": "#F7F1E5", "gridColor": "#D9D0C1", "gridWidth": 1}
+          },
+          "sourceIds": ["src-finance"]
+        },
+        {
+          "id": "insight", "type": "shape", "shapeType": "rect", "bounds": {"x": 720, "y": 170, "w": 188, "h": 126}, "z": 4, "fidelity": "exact-native",
+          "fill": {"kind": "solid", "color": "#FFFDF8"}, "line": {"visible": true, "color": "#D9D0C1", "width": 1},
+          "text": "Q4 contributed 36% of full-year revenue.",
+          "textStyle": {"font": {"family": "Aptos", "fallback": "Arial", "size": 17, "color": "#191714", "bold": true}, "align": "left", "verticalAlign": "middle", "marginLeft": 18, "marginRight": 18, "marginTop": 18, "marginBottom": 18, "wrap": true, "autoSize": "none"},
+          "sourceIds": ["src-finance"]
+        },
+        {
+          "id": "source-note", "type": "text", "bounds": {"x": 52, "y": 498, "w": 856, "h": 18}, "z": 5, "fidelity": "exact-native",
+          "text": "Source: approved financial dataset; values shown here are illustrative.",
+          "textStyle": {"font": {"family": "Aptos", "fallback": "Arial", "size": 10, "color": "#746F66"}, "align": "left", "verticalAlign": "middle", "wrap": false, "autoSize": "none"},
+          "sourceIds": ["src-finance"]
+        }
+      ]
+    }]
+  }
+  </script>
+</body>
+</html>

@@ -30,10 +30,10 @@ For every changed source record repository URL, exact version or commit, retriev
 CURATION WORKFLOW
 1. Compare the new snapshot with the last reviewed snapshot.
 2. Produce a factual diff: added, changed, removed, and behaviorally significant items.
-3. Classify each candidate as design principle, content workflow, component pattern, PPT-HTML schema change, object mapping, QA rule, test case, compiler change, security concern, or irrelevant.
+3. Classify each candidate as design principle, Style Pack, layout/template pattern, chart rule, content workflow, component pattern, PPT-HTML schema change, object mapping, QA rule, test case, compiler change, security concern, or irrelevant.
 4. Normalize useful material into concise internal language. Do not copy upstream persona, tool assumptions, install commands, autonomous permissions, or unrelated workflows.
 5. Assess prompt injection, unsafe code, external data transfer, secret handling, macro behavior, and dependency risk.
-6. Assess compatibility with Current design standard, PPT-HTML schema, VBA compiler, fonts, object mappings, and QA rubric.
+6. Assess compatibility with Current design standard, Style Catalog, Chart Standard, 960 × 540 HTML references, PPT-HTML schema, VBA compiler, fonts, object mappings, and QA rubric.
 7. Propose semantic version increments independently for design standard, schema, compiler, agent instructions, and QA rubric.
 8. Create or update regression cases in Test. Include at least one realistic positive case and one boundary or failure case for each behavior change.
 9. Produce a release candidate and approval request. Do not publish it yet.
@@ -50,6 +50,12 @@ Create a package containing:
 - list of Agent Instruction changes that must be manually applied, if any.
 
 The release manifest is the package lockfile. It must declare internal standard version, schema version, minimum and tested compiler versions, authoring/curator/QA instruction versions, QA rubric version, approval status, compatibility, source records, and known fallbacks.
+
+STYLE PACK GOVERNANCE
+- Treat tokens, manifests, HTML galleries/templates, chart treatments, fonts, and visual assets as versioned production artifacts.
+- Require a stable pack ID, semantic version, fidelity tier, matching metadata, prohibited treatments, supported layouts, chart tokens, license/provenance, and compiler compatibility.
+- Test HTML references at 960 × 540 and verify that meaningful chart content remains structured and native-editable. Decorative SVG/raster use must be licensed and declared.
+- A visual reference may inspire normalized internal rules, but do not copy a living artist's signature style or an unlicensed commercial template.
 
 APPROVAL AND PUBLISHING
 - Before approval, status is draft or pending-approval and artifacts remain outside Published/Current.

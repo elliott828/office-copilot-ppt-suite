@@ -1,4 +1,4 @@
-# Internal PPT design standard 0.1.0
+# Internal PPT design standard 0.2.0
 
 ## Outcome
 
@@ -36,6 +36,15 @@ Create decision-ready 16:9 presentations whose content is traceable, whose layou
 - Use gradients, shadows, glow, reflection, soft edges, and 3-D only when the mapping specification supports them and they clarify hierarchy.
 - Prefer native approximation over rasterization for noncritical effect differences.
 
+## Style selection
+
+- Match the approved Style Pack from the user's audience, objective, delivery mode, content density, data intensity, imagery availability, tone, brand strictness, and accessibility needs.
+- Use `style-catalog.json` and `style-matching.md`; do not apply a favorite or random default when the context indicates a better pack.
+- Use one primary Style Pack and version per deck. Vary rhythm through that pack's approved layouts rather than mixing visual systems slide by slide.
+- Apply organization-specific fonts, colors, logo, footer, and imagery rules as a separate Brand Overlay and record every override.
+- Record the selected pack, version, rationale, confidence, alternatives considered, Brand Overlay, and fidelity tier in the build manifest.
+- Use `style-gallery.html` only as a visual/source reference. It is not compiler input. Use `chart-slide-template.html` as the canonical compiler-safe chart example.
+
 ## Images
 
 - Record source and usage rights.
@@ -50,6 +59,11 @@ Create decision-ready 16:9 presentations whose content is traceable, whose layou
 - Keep axes, units, time periods, categories, and calculations unambiguous.
 - Avoid 3-D charts and decorative chart effects that impair comparison.
 - Use consistent number formats and disclose transformed or indexed data.
+- Choose chart family from the analytical question: change, comparison, composition, distribution, relationship, signed variance, or flow.
+- Prefer direct labels when they fit. Avoid dual axes, 3-D effects, and more than six equally emphasized series.
+- Bar charts start at zero. A nonzero line-chart domain must be disclosed and must not mislead.
+- Missing values remain gaps, not zeros. Preserve categories, series, values, units, number formats, transforms, and source IDs.
+- Apply chart tokens from the selected Style Pack without changing semantic encodings or flattening structured data.
 
 ## Tables
 

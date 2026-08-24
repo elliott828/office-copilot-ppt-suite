@@ -4,7 +4,7 @@
 
 这是一套可部署的能力包，面向无法安装社区 Skills、但可以使用 Microsoft 365 Copilot Agent 的企业环境，用于生成由 PowerPoint 原生对象组成、可继续编辑的演示文稿。
 
-> 本仓库不是 Microsoft 365 Copilot 原生可安装的 Skill。它通过 Copilot Agents、受治理的 SharePoint 知识库、受约束的 PPT-HTML 格式和固定 VBA 编译器提供可复用能力。支持 `SKILL.md` 的平台可以安装 `skills/` 下的两个 Skills。
+> 本仓库不是 Microsoft 365 Copilot 原生可安装的 Skill。它通过 Copilot Agents、受治理的 SharePoint 知识库、受约束的 PPT-HTML 格式和固定 VBA 编译器提供可复用能力。支持 `SKILL.md` 的平台可以安装 `skills/` 下的 Skills。
 
 ## 包含内容
 
@@ -13,6 +13,7 @@
 | PPT Authoring Agent | 将对话以及 Word、PowerPoint、Excel、PDF、文本、HTML、Markdown 和图片资料转换成 16:9 PPT-HTML |
 | PPT Skill Curator | 审阅外部演示文稿 Skills，并通过受控发布流程形成批准后的内部规范 |
 | PPT QA Agent | 检查 Schema、原生对象可编辑性、几何位置、视觉一致性、内容准确性和无障碍要求 |
+| PPT-HTML Style System Skill | 根据用户上下文匹配版本化的 16:9 Style Pack、版式原型和原生可编辑图表处理方式 |
 | PPT-HTML VBA Compiler Skill | 验证 PPT-HTML，并由固定 VBA 引擎将内嵌模型编译成 PowerPoint 原生对象 |
 | Orchestrator Skill | 部署并维护整套 Office Copilot Agents |
 | Shared Library 模板 | 提供 `Incoming`、`Draft`、`Test`、`Registry`、`Published/Current` 和不可变发布区 |
@@ -25,7 +26,7 @@
 4. **编译器保持固定。** Agent 会为每次请求生成不同的演示文稿模型，但不会重新编写 VBA 转换引擎。稳定的编译器可以集中审阅、签名、回归测试和批准，变化只留在演示文稿内容中。
 5. **保留原生可编辑性，同时避免对象膨胀。** PowerPoint 对象模型允许时，一个语义视觉对象只生成一个 PowerPoint 对象。带文字的样式容器会生成一个含 `TextFrame2` 的 shape，而不是背景 shape 加独立文本框。表格和图表携带重建数据，因此可以继续作为原生表格和图表存在。
 6. **通过治理流程内部化外部 Skills。** GitHub 上游 Skills 只作为不受信任的研究输入。Curator 记录来源和许可证，提取可用方法，完成兼容性测试和人工批准，再发布为内部规范。生产 Agents 只读取 `Published/Current`，上游变化不会无声影响日常制稿。
-7. **分离不同职责。** 内容生成、规范维护、编译和 QA 有不同的失败模式与发布节奏，因此由不同 Agent 或能力负责，并使用明确的交接产物。Compiler 在完整流程中属于嵌套能力，但物理上以同级 Skill `$ppt-html-vba-compiler` 存放，确保它可以被独立发现和调用。
+7. **分离不同职责。** 内容生成、风格匹配、规范维护、编译和 QA 有不同的失败模式与发布节奏，因此由不同 Agent 或能力负责，并使用明确的交接产物。Style System 与 Compiler 在完整流程中属于嵌套能力，但物理上以同级 Skills 存放，确保它们可以被独立发现和调用。
 8. **以证据为准，不做乐观推断。** 未知 Schema 主版本和对象类型会触发失败关闭。视觉一致性需要渲染对比，原生可编辑性需要对象清单或直接检查，桌面编译需要输出文件和编译报告。语言模型只准备输入时，不能声称自己已经执行 VBA。
 
 ## Office Copilot 快速部署
@@ -41,21 +42,23 @@
 
 ## 安装 Skills
 
-对于支持 `SKILL.md` 的平台，可以将以下一个或两个目录复制到 Skills 目录：
+对于支持 `SKILL.md` 的平台，可以把所需目录复制到 Skills 目录：
 
 ```text
 skills/office-copilot-ppt-orchestrator
+skills/ppt-html-style-system
 skills/ppt-html-vba-compiler
 ```
 
-两个 Skill 均可独立调用：
+这些 Skill 均可独立调用：
 
 ```text
 Use $office-copilot-ppt-orchestrator to configure this tenant's PPT agent suite.
+Use $ppt-html-style-system to match this deck to an approved 16:9 style and chart system.
 Use $ppt-html-vba-compiler to validate and compile deck.html.
 ```
 
-Compiler Skill 在逻辑上属于整个套件，但在目录和发现机制中保持独立，以保证平台能够稳定识别。
+Style System 与 Compiler Skills 在逻辑上属于整个套件，但在目录和发现机制中保持独立，以保证平台能够稳定识别。
 
 ## 仓库结构
 
@@ -63,7 +66,7 @@ Compiler Skill 在逻辑上属于整个套件，但在目录和发现机制中�
 office-copilot/           可复制到 Agent Builder 的 Prompts 和 Instructions
 shared-library-template/  SharePoint 知识库与发布模板
 ppt-html/                 Schema、映射契约和示例
-skills/                   两个可独立安装的 Skills
+skills/                   可独立发现的 Orchestrator、Style System 与 Compiler Skills
 docs/                     架构和治理文档
 tools/                    配置与仓库验证工具
 ```

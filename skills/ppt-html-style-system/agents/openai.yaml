@@ -1,0 +1,5 @@
+interface:
+  display_name: "PPT-HTML Style System"
+  short_description: "Match 16:9 deck styles, layouts, and native charts"
+  brand_color: "#D44C2F"
+  default_prompt: "Use $ppt-html-style-system to match this presentation context to an approved Style Pack and produce compiler-safe PPT-HTML guidance."

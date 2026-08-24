@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>16:9 PPT-HTML Style Pack Gallery</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 36px; background: #d8dadd; color: #151719; font-family: Aptos, Arial, sans-serif; }
+    h1 { margin: 0 0 8px; font-size: 30px; }
+    .intro { margin: 0 0 28px; color: #51565c; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); gap: 28px; align-items: start; }
+    .entry h2 { margin: 0 0 10px; font-size: 16px; }
+    .viewport { width: 480px; height: 270px; overflow: hidden; box-shadow: 0 10px 28px rgba(0,0,0,.18); }
+    .slide { position: relative; width: 960px; height: 540px; transform: scale(.5); transform-origin: 0 0; overflow: hidden; }
+    .title { position: absolute; left: 52px; top: 40px; width: 856px; font-size: 34px; line-height: 1.08; font-weight: 700; }
+    .kicker { position: absolute; left: 52px; top: 112px; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; }
+    .plot { position: absolute; left: 52px; top: 170px; width: 620px; height: 280px; border-left: 2px solid currentColor; border-bottom: 2px solid currentColor; }
+    .bar { position: absolute; bottom: 0; width: 82px; }
+    .note { position: absolute; left: 720px; top: 190px; width: 188px; font-size: 22px; line-height: 1.3; font-weight: 700; }
+    .source { position: absolute; left: 52px; bottom: 24px; font-size: 11px; opacity: .7; }
+    .executive { background:#f6f3ed; color:#17202a; } .executive .bar{background:#203a5f}.executive .hot{background:#b23a2b}.executive .note{border-top:6px solid #b23a2b;padding-top:18px}
+    .consulting { background:#fff; color:#12263a; } .consulting .plot{background:repeating-linear-gradient(to top,transparent 0,transparent 54px,#d6dee6 55px)} .consulting .bar{background:#0067b1}.consulting .hot{background:#2e8540}.consulting .note{background:#f4f6f8;padding:20px}
+    .editorial { background:#f7f1e5; color:#191714; } .editorial .bar{background:#1e6a78}.editorial .hot{background:#d24a2f}.editorial .note{font-family:Georgia,"Times New Roman",serif;font-size:25px}
+    .blueprint { background:#0e2433; color:#f2f8fa; } .blueprint .plot{border-color:#315566;background:repeating-linear-gradient(to top,transparent 0,transparent 53px,#315566 54px)} .blueprint .bar{background:#67a7ff}.blueprint .hot{background:#43c6ac}.blueprint .note{color:#43c6ac}
+    .swiss { background:#f2efe7; color:#111; } .swiss .title{font-size:42px;width:610px}.swiss .kicker{left:720px;top:48px;color:#e4312b}.swiss .plot{top:188px}.swiss .bar{background:#1756a9}.swiss .hot{background:#e4312b}.swiss .note{border-left:12px solid #e4312b;padding-left:18px}
+    .artbook { background:#eee9df; color:#2b2520; } .artbook .title{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:40px}.artbook .bar{background:#3d6f72}.artbook .hot{background:#8b2f3c}.artbook .note{font-family:Georgia,"Times New Roman",serif;font-weight:400}
+    .geometric { background:#f3e8d3; color:#171717; } .geometric:before{content:"";position:absolute;right:-120px;top:-160px;width:400px;height:400px;background:#e8b229;transform:rotate(28deg)} .geometric .bar{background:#1c4e80}.geometric .hot{background:#d7372f}.geometric .note{background:#171717;color:#fff;padding:20px;transform:rotate(-2deg)}
+    .cinematic { background:linear-gradient(110deg,#0d0e10,#29231c);color:#f4f1ea; } .cinematic .plot{border-color:#44464b}.cinematic .bar{background:#7db3c7}.cinematic .hot{background:#e0a458}.cinematic .note{color:#e0a458}.cinematic .source{color:#b4b0a8}
+  </style>
+</head>
+<body>
+  <h1>16:9 Style Pack Gallery</h1>
+  <p class="intro">Visual reference only. Each frame is authored at 960 × 540 and scaled to 50% for comparison. Structured tokens and rules remain authoritative.</p>
+  <main class="gallery">
+    <article class="entry"><h2>Executive Minimal · native-safe</h2><div class="viewport"><section class="slide executive"><div class="title">The second half created the growth inflection</div><div class="kicker">Executive decision</div><div class="plot"><i class="bar" style="left:55px;height:90px"></i><i class="bar" style="left:185px;height:125px"></i><i class="bar" style="left:315px;height:170px"></i><i class="bar hot" style="left:445px;height:230px"></i></div><div class="note">Concentrate investment where momentum is proven.</div><div class="source">Illustrative data · direct labels in production</div></section></div></article>
+    <article class="entry"><h2>Consulting Grid · native-safe</h2><div class="viewport"><section class="slide consulting"><div class="title">Two initiatives explain most of the improvement</div><div class="kicker">Structured analysis</div><div class="plot"><i class="bar" style="left:55px;height:105px"></i><i class="bar" style="left:185px;height:145px"></i><i class="bar hot" style="left:315px;height:218px"></i><i class="bar" style="left:445px;height:175px"></i></div><div class="note">Show the comparison path and annotate the evidence.</div><div class="source">Illustrative data · zero baseline</div></section></div></article>
+    <article class="entry"><h2>Data Editorial · native-safe</h2><div class="viewport"><section class="slide editorial"><div class="title">Growth returned—but not evenly</div><div class="kicker">Data story</div><div class="plot"><i class="bar" style="left:55px;height:84px"></i><i class="bar" style="left:185px;height:128px"></i><i class="bar" style="left:315px;height:176px"></i><i class="bar hot" style="left:445px;height:236px"></i></div><div class="note">Large takeaway, quiet grid, one deliberate accent.</div><div class="source">Illustrative data · editorial annotation</div></section></div></article>
+    <article class="entry"><h2>Technical Blueprint · native-safe</h2><div class="viewport"><section class="slide blueprint"><div class="title">Throughput scales after the architecture change</div><div class="kicker">System performance</div><div class="plot"><i class="bar" style="left:55px;height:70px"></i><i class="bar" style="left:185px;height:118px"></i><i class="bar" style="left:315px;height:166px"></i><i class="bar hot" style="left:445px;height:232px"></i></div><div class="note">Precise units and one highlighted signal.</div><div class="source">Illustrative data · technical grid</div></section></div></article>
+    <article class="entry"><h2>Swiss Modernist · native-safe</h2><div class="viewport"><section class="slide swiss"><div class="title">Make the hierarchy visible</div><div class="kicker">01 / Modern grid</div><div class="plot"><i class="bar" style="left:55px;height:92px"></i><i class="bar" style="left:185px;height:132px"></i><i class="bar" style="left:315px;height:174px"></i><i class="bar hot" style="left:445px;height:235px"></i></div><div class="note">Flat color, asymmetric alignment, direct labels.</div><div class="source">Illustrative data · primary accent</div></section></div></article>
+    <article class="entry"><h2>Art Book Editorial · native-plus</h2><div class="viewport"><section class="slide artbook"><div class="title">Evidence with room to breathe</div><div class="kicker">Visual essay</div><div class="plot"><i class="bar" style="left:55px;height:88px"></i><i class="bar" style="left:185px;height:126px"></i><i class="bar" style="left:315px;height:180px"></i><i class="bar hot" style="left:445px;height:232px"></i></div><div class="note">Quiet plotting and typographic interpretation.</div><div class="source">Illustrative data · generous margins</div></section></div></article>
+    <article class="entry"><h2>Geometric Constructivist · native-plus</h2><div class="viewport"><section class="slide geometric"><div class="title">Momentum becomes a visible structure</div><div class="kicker">Geometric argument</div><div class="plot"><i class="bar" style="left:55px;height:80px"></i><i class="bar" style="left:185px;height:128px"></i><i class="bar" style="left:315px;height:168px"></i><i class="bar hot" style="left:445px;height:226px"></i></div><div class="note">Bold framing; keep the data flat and readable.</div><div class="source">Illustrative data · native shapes</div></section></div></article>
+    <article class="entry"><h2>Cinematic Photo-led · art-directed</h2><div class="viewport"><section class="slide cinematic"><div class="title">A single signal carries the story</div><div class="kicker">Vision narrative</div><div class="plot"><i class="bar" style="left:55px;height:76px"></i><i class="bar" style="left:185px;height:112px"></i><i class="bar" style="left:315px;height:164px"></i><i class="bar hot" style="left:445px;height:230px"></i></div><div class="note">Use only with strong licensed imagery and low density.</div><div class="source">Illustrative data · dark field</div></section></div></article>
+  </main>
+</body>
+</html>

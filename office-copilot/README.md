@@ -21,10 +21,12 @@ This directory is the copy/paste deployment kit for Microsoft 365 Copilot Agent 
 6. Build the approved compiler host from `../skills/ppt-html-vba-compiler/vba/`; see its `references/compiler-host.md`.
 7. Test privately with `../ppt-html/examples/sample-deck/deck.html`, inspect the object inventory, and publish only after human approval.
 
+`Published/Current` now includes the Style Catalog, matching rules, chart design standard, a visual HTML gallery, and a compiler-safe chart template. After upgrading an existing deployment, replace all three Agent Instructions with the updated files under `instructions/`, verify the knowledge source has refreshed, test privately, and publish each Agent again. Updating SharePoint knowledge alone does not replace an Agent's Instructions.
+
 The prompts are normative English so one controlled copy can serve a multilingual tenant. Each agent is instructed to answer in the user's language. Localize labels if desired, but do not translate paths, placeholders, Schema keys, commands, or version strings.
 
 ## Runtime flow
 
-User context → Authoring Agent → constrained PPT-HTML + manifest → fixed VBA compiler → native PowerPoint objects → QA Agent → human approval.
+User context → Style match → Authoring Agent → constrained PPT-HTML + manifest → fixed VBA compiler → native PowerPoint objects → QA Agent → human approval.
 
 Copilot prepares, reviews, and explains artifacts; it must not claim that it executed desktop VBA. External GitHub content is quarantined until the Curator records provenance and license, tests it, obtains approval, and publishes an immutable internal release.

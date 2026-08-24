@@ -5,12 +5,13 @@
 本套件把概率性的内容工作与确定性的文档构造分开。Authoring Agent 理解混合文件和对话，只应用经批准的内部规范并输出受限 PPT-HTML；固定 compiler 验证内嵌 JSON 模型并创建 PowerPoint 原生对象；QA Agent 检查意图和证据；Curator 在日常制稿会话之外更新规范。
 
 ```text
-来源 -> Authoring Agent -> PPT-HTML -> validator/plan -> 固定 VBA host -> PPTX -> QA
-                               ^
-GitHub -> 隔离 -> Curator -> 测试/批准 -> Published/Current
+来源 -> 风格匹配 -> Authoring Agent -> PPT-HTML -> validator/plan -> 固定 VBA host -> PPTX -> QA
+          ^                  ^
+          |                  |
+    Style Catalog     Published/Current <- 测试/批准 <- Curator <- 隔离 <- GitHub
 ```
 
-Compiler 在流程上嵌套于总控能力，物理上则是同级独立 Skill `$ppt-html-vba-compiler`，因此可单独验证和编译，也不会因藏在另一个 Skill 目录中而无法发现。
+Style System 与 Compiler 在流程上嵌套于总控能力，物理上则分别以同级 Skill `$ppt-html-style-system` 和 `$ppt-html-vba-compiler` 存放，因此风格匹配、验证和编译都可被独立发现。Microsoft 365 Copilot 不安装 Style Skill，而是读取 `Published/Current` 中经批准的等价知识文件。
 
 PowerPoint 支持时，一个语义视觉对象应对应一个原生对象。带文字的 HTML 容器映射为一个含 `TextFrame2` 的 shape；图表和表格携带重建数据并生成原生对象。不支持的效果必须明确声明 native、SVG、raster 或 unsupported fallback。
 

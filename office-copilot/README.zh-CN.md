@@ -21,10 +21,12 @@
 6. 用 `../skills/ppt-html-vba-compiler/vba/` 建立获批的编译宿主，详见其 `references/compiler-host.md`。
 7. 用 `../ppt-html/examples/sample-deck/deck.html` 做私有测试，检查对象清单，经人工批准后再发布。
 
+`Published/Current` 现在还包含 Style Catalog、匹配规则、图表设计标准、视觉 HTML 画廊和可编译的图表模板。升级已有部署时，需要用 `instructions/` 下的新版本替换三个 Agent 的 Instructions，确认知识源完成刷新，私有测试后重新发布每个 Agent。只更新 SharePoint 知识文件不会自动替换 Agent Instructions。
+
 Prompt 以英文作为规范源，以便一套受控文本服务多语言租户；Agent 已被要求使用用户语言回答。可以本地化显示名称，但不要翻译路径、占位符、Schema 键、命令和版本号。
 
 ## 运行流程
 
-用户上下文 → Authoring Agent → 受限 PPT-HTML 与 manifest → 固定 VBA compiler → PowerPoint 原生对象 → QA Agent → 人工批准。
+用户上下文 → 风格匹配 → Authoring Agent → 受限 PPT-HTML 与 manifest → 固定 VBA compiler → PowerPoint 原生对象 → QA Agent → 人工批准。
 
 Copilot 负责准备、审阅和解释产物，不能声称自己执行了桌面 VBA。外部 GitHub 内容必须先隔离，由 Curator 记录来源和许可证、测试、取得批准并发布不可变内部版本。
